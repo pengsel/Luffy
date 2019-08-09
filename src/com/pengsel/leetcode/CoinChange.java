@@ -92,5 +92,25 @@ public class CoinChange {
 
     public int change(int amount, int[] coins) {
 
+        //可以优化成一维数组
+//        int[][] dp=new int[coins.length+1][amount+1];
+
+        int[] dp=new int[amount+1];
+//        dp[0][0]=1;
+        for (int i=1;i<=coins.length;i++){
+//            dp[i][0]=1;
+
+            dp[0]=1;
+            for (int j=0;j<=amount;j++){
+//                dp[i][j] = dp[i-1][j] + (j >= coins[i-1] ? dp[i][j-coins[i-1]] : 0);
+
+                dp[j]=dp[j]+(j>=coins[i-1]? dp[j-coins[i-1]]:0);
+            }
+
+        }
+
+//        return dp[coins.length][amount];
+
+        return dp[amount];
     }
 }
