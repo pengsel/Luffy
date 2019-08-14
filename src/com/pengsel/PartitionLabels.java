@@ -1,0 +1,27 @@
+package com.pengsel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PartitionLabels {
+
+    public List<Integer> partitionLabels(String S) {
+        int[] last = new int[26];
+        //存储最后一个字母的位置
+        for (int i = 0; i < S.length(); ++i)
+            last[S.charAt(i) - 'a'] = i;
+
+        int j = 0, anchor = 0;
+        List<Integer> ans = new ArrayList();
+        for (int i = 0; i < S.length(); ++i) {
+            j = Math.max(j, last[S.charAt(i) - 'a']);
+            //当i==j时,表明当前i已经到达了分界点
+            //分界点实际上是当前所有的字母中 last[] 最大的一个
+            if (i == j) {
+                ans.add(i - anchor + 1);
+                anchor = i + 1;
+            }
+        }
+        return ans;
+    }
+}

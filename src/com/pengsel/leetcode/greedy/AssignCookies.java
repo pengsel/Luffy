@@ -1,4 +1,4 @@
-package com.pengsel.leetcode;
+package com.pengsel.leetcode.greedy;
 
 import java.util.Arrays;
 
